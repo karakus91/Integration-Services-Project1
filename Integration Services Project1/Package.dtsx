@@ -11,8 +11,8 @@
   DTS:LocaleID="1031"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{B6036892-FF44-4228-B4A9-BCA8EDFA06BC}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{C4FA5524-8CEC-4353-A57A-E05EBEBFA27D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -663,6 +663,118 @@
                   </outputs>
                 </component>
                 <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension"
+                  componentClassID="Microsoft.SCD"
+                  contactInfo="Langsam veränderliche Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;3"
+                  description="Aktualisiert eine SQL Server Analysis Services Data Warehouse-Dimension. Aktualisieren Sie bereits vorhandene Dimensionsdatensätze, und fügen Sie nicht vorhandene Dimensionsdatensätze ein. Aktualisieren Sie beispielsweise die Tabelle &quot;DimProduct&quot; der OLAP-Datenbank &quot;AdventureWorksDW&quot; mit Daten aus der Tabelle &quot;Products&quot; in der OLTP-Datenbank &quot;AdventureWorks&quot;."
+                  name="Langsam veränderliche Dimension"
+                  version="3">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Gibt die zum Erstellen eines Schemarowsets verwendete SELECT-Anweisung an."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt die WHERE-Klausel in der SELECT-Anweisung an, die die aktuelle Zeile unter Zeilen mit identischen Geschäftsschlüsseln auswählt."
+                      name="CurrentRowWhere"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Zeigt an, ob Updates des Verlaufsattributs zur Aktualisierung von veränderlichen Attributen an die Transformationsausgabe geleitet werden sollen."
+                      name="UpdateChangingAttributeHistory">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Zeigt an, ob die Transformation fehlschlägt, wenn Spalten mit festen Attributen Änderungen enthalten."
+                      name="FailOnFixedAttributeChange">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt den Spaltennamen für das abgeleitete Element an."
+                      name="InferredMemberIndicator"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Zeigt an, ob Updates abgeleiteter Elemente erkannt werden."
+                      name="EnableInferredMember">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Zeigt an, ob die Transformation bei einem Fehler in der Suche nach einem vorhandenen Datensatz fehlschlägt."
+                      name="FailOnLookupFailure">false</property>
+                    <property
+                      dataType="System.UInt32"
+                      description="Gibt an, dass alle Zeilen in der Eingabe neu sind. Anderenfalls erkennt die Transformation den Änderungstyp."
+                      name="IncomingRowChangeType"
+                      typeConverter="IncomingRowChangeType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die zu verwendende Spaltencodepage an, wenn keine Codepageinformationen von der Datenquelle verfügbar sind."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Connections[LookupConnection]"
+                      description="Definiert die für Suchvorgänge in der Dimensionstabelle zu verwendende Verbindung."
+                      name="LookupConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]"
+                      name="Eingabe für langsam veränderliche Dimensionen">
+                      <externalMetadataColumns
+                        isUsed="True" />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Outputs[Nicht geänderte Ausgabe]"
+                      description="Nicht geänderte Zeilen"
+                      exclusionGroup="1"
+                      name="Nicht geänderte Ausgabe"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Outputs[Neue Ausgabe]"
+                      description="Neue Zeilen"
+                      exclusionGroup="1"
+                      name="Neue Ausgabe"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Outputs[Ausgabe des festen Attributs]"
+                      description="Zeilen mit Änderungen in Spalten, die als &quot;FixedAttribute&quot; gekennzeichnet sind."
+                      exclusionGroup="1"
+                      name="Ausgabe des festen Attributs"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Outputs[Ausgabe der Updates von veränderlichen Attributen]"
+                      description="Diese Zeilen enthalten neue Informationen für Änderungen an ChangingAttribute-Spalten (Typ 1)."
+                      exclusionGroup="1"
+                      name="Ausgabe der Updates von veränderlichen Attributen"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Outputs[Ausgabe der Einfügevorgänge im Verlaufsattribut]"
+                      description="HistoricalAttribute-Änderungen (Typ 2) führen zu diesen neuen Zeilen."
+                      exclusionGroup="2"
+                      name="Ausgabe der Einfügevorgänge im Verlaufsattribut"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Outputs[Ausgabe der Updates abgeleiteter Elemente]"
+                      description="Informationen zum Aktualisieren nicht aufgefüllter ursprünglicher Dimensionszeilen"
+                      exclusionGroup="1"
+                      name="Ausgabe der Updates abgeleiteter Elemente"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension.Inputs[Eingabe für langsam veränderliche Dimensionen]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Quelle"
                   componentClassID="Attunity.SSISODBCSrc"
                   description="ODBC-Quelle"
@@ -758,6 +870,101 @@
                           refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Quelle.Outputs[Fehlerausgabe der ODBC-Quelle].Columns[ErrorColumn]"
                           dataType="i4"
                           lineageId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Quelle.Outputs[Fehlerausgabe der ODBC-Quelle].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel"
+                  componentClassID="Attunity.SSISODBCDst"
+                  description="ODBC-Ziel"
+                  name="ODBC-Ziel"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Der Name der abzurufenden Tabelle."
+                      expressionType="Notify"
+                      name="TableName"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Geben Sie die Anzahl der Zeilen an, die pro Batch abgerufen werden."
+                      expressionType="Notify"
+                      name="BatchSize">1000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Die Anzahl von Zeilen, die in derselben Transaktion eingefügt werden."
+                      expressionType="Notify"
+                      name="TransactionSize">1000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die Blockgrößenzuteilung für LOB-Spalten an."
+                      expressionType="Notify"
+                      name="LobChunkSize">32768</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Die Anzahl von Sekunden für die Ausführung einer SQL-Anweisung, bevor eine Rückkehr zur Anwendung erfolgt."
+                      expressionType="Notify"
+                      name="StatementTimeout">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Die zu verwendende Codepage, wenn keine Codepageinformationen von der Datenquelle verfügbar sind."
+                      expressionType="Notify"
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Die Methode zum Einfügen von Daten. Mögliche Werte: &quot;Batch&quot; oder &quot;Zeilenweise&quot;."
+                      expressionType="Notify"
+                      name="InsertMethod">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Der ODBC-C-Datentyp zum Binden numerischer Daten."
+                      expressionType="Notify"
+                      name="BindNumericAs">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Legt fest, wie die Komponente Spalten von (Multi-) Bytezeichenfolgentypen binden soll (d. h. SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). Optionen: Unicode (SQL_C_WCHAR) und ANSI (SQL_C_CHAR)."
+                      expressionType="Notify"
+                      name="BindCharColumnsAs">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Connections[ODBCConnection]"
+                      description="Die für den Zugriff auf die Datenbank verwendete ODBC-Laufzeitverbindung."
+                      name="ODBCConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Inputs[ODBC-Zieleingabe]"
+                      errorOrTruncationOperation="Einfügen"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="ODBC-Zieleingabe"
+                      truncationRowDisposition="FailComponent">
+                      <externalMetadataColumns
+                        isUsed="True" />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Outputs[Fehlerausgabe des ODBC-Ziels]"
+                      isErrorOut="true"
+                      name="Fehlerausgabe des ODBC-Ziels">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Outputs[Fehlerausgabe des ODBC-Ziels].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Outputs[Fehlerausgabe des ODBC-Ziels].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Outputs[Fehlerausgabe des ODBC-Ziels].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel.Outputs[Fehlerausgabe des ODBC-Ziels].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -1151,6 +1358,192 @@ WHERE ProductSubtypeCode = ?</property>
                   </outputs>
                 </component>
                 <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\Pivot"
+                  componentClassID="Microsoft.Pivot"
+                  contactInfo="Pivot;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;1"
+                  description="Komprimiert einen Eingabedatenfluss durch Pivotierung auf einem Spaltenwert, um eine weniger stark normalisierte Version zu erhalten. Die Eingabedaten sollten nach der Pivotspalte sortiert werden, weil bei jeder Änderung von Daten in der Pivotspalte ein Pivotvorgang ausgeführt wird. Hinweis: Doppelte Zeilen führen zu einem Transformationsfehler."
+                  name="Pivot"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Bewirkt, dass bei der Pivottransformation Zeilen, die in der Pivotschlüsselspalte unbekannte Werte enthalten, ignoriert werden, und dass am Ende der DataFlow-Ausführung ein Bericht mit einer vollständigen Liste nicht übereinstimmender Werte zurückgegeben wird. Dies ist hilfreich beim Auflisten von Werten aus Eingabezeilen, die zum automatischen Generieren von Ausgabespalten verwendet werden können."
+                      name="PassThroughUnmatchedPivotKeys">false</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Inputs[Standardeingabe für Pivot]"
+                      hasSideEffects="true"
+                      name="Standardeingabe für Pivot">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Outputs[Standardausgabe für Pivot]"
+                      name="Standardausgabe für Pivot">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Outputs[Fehlerausgabe für Pivot]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Fehlerausgabe für Pivot"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Inputs[Standardeingabe für Pivot]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Outputs[Fehlerausgabe für Pivot].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Outputs[Fehlerausgabe für Pivot].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Outputs[Fehlerausgabe für Pivot].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\For-Schleifencontainer\Datenflusstask\Pivot.Outputs[Fehlerausgabe für Pivot].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe"
+                  componentClassID="Microsoft.PctSampling"
+                  contactInfo="Prozentwert-Stichprobe;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;0"
+                  description="Erhebt eine Zufallsstichprobe bestehend aus einem Prozentsatz von Zeilen aus einem Eingabedatenfluss. Kann beispielsweise zweimal verwendet werden, um die Erstellung eines Data Mining-Modells zu unterstützen: eine Stichprobe für das Modelltraining und eine andere für den Modelltest."
+                  name="Prozentwert-Stichprobe">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die Prozentsatzgröße der Stichprobe an."
+                      expressionType="Notify"
+                      name="SamplingValue">10</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt den Ausgangswert für den Zufallszahlen-Generator an."
+                      name="SamplingSeed">0</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe.Inputs[Prozentwert-Stichprobe Eingabe 1]"
+                      name="Prozentwert-Stichprobe Eingabe 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe.Outputs[Ausgabe der ausgewählten Stichproben]"
+                      exclusionGroup="1"
+                      name="Ausgabe der ausgewählten Stichproben"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe.Inputs[Prozentwert-Stichprobe Eingabe 1]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Ausgabe für Zeilen in der Stichprobe"
+                          name="Selected">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe.Outputs[Ausgabe der nicht ausgewählten Stichproben]"
+                      exclusionGroup="1"
+                      name="Ausgabe der nicht ausgewählten Stichproben"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe.Inputs[Prozentwert-Stichprobe Eingabe 1]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Ausgabe für Zeilen in der Stichprobe"
+                          name="Selected">false</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\Skriptkomponente"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Schließt benutzerdefinierten Skriptcode ein und führt ihn aus. Wenden Sie beispielsweise eine Geschäftsregel an, durch die der Bereich der gültigen Werte in einer Spalte &quot;income&quot; beschränkt wird, oder addieren Sie Werte in zwei Spalten, und berechnen Sie den Mittelwert der Summe.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;11"
+                  description="Schließt benutzerdefinierten Skriptcode ein und führt ihn aus. Wenden Sie beispielsweise eine Geschäftsregel an, durch die der Bereich der gültigen Werte in einer Spalte &quot;income&quot; beschränkt wird, oder addieren Sie Werte in zwei Spalten, und berechnen Sie den Mittelwert der Summe."
+                  name="Skriptkomponente"
+                  version="11">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Speichert den Quellcode der Komponente."
+                      isArray="true"
+                      name="SourceCode"
+                      state="cdata">
+                      <arrayElements
+                        arrayElementCount="0" />
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Speichert die binäre Darstellung der Komponente."
+                      isArray="true"
+                      name="BinaryCode"
+                      state="cdata">
+                      <arrayElements
+                        arrayElementCount="0" />
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt den Namen des Projekts in Microsoft Visual Studio Tools for Applications an. Projektnamen müssen innerhalb eines Pakets eindeutig sein."
+                      name="VSTAProjectName"
+                      typeConverter="NOTBROWSABLE">SC_da6bf58bf33043c485961c56a8af944b</property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt die im Skript verwendete Programmiersprache an."
+                      name="ScriptLanguage"
+                      typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt eine durch Trennzeichen getrennte Liste mit Variablen für den Lesezugriff an."
+                      name="ReadOnlyVariables"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt eine durch Trennzeichen getrennte Liste mit Variablen für den Lese- und Schreibzugriff an."
+                      name="ReadWriteVariables"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                    <property
+                      dataType="System.String"
+                      description="Liste der im Skript vorhandenen Breakpoints."
+                      isArray="true"
+                      name="BreakpointCollection"
+                      typeConverter="NOTBROWSABLE">
+                      <arrayElements
+                        arrayElementCount="0" />
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Prüfsumme zum Abgleichen der Komponentenmetadaten mit den kompilierten Codes."
+                      name="MetadataChecksum140"
+                      typeConverter="NOTBROWSABLE"></property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Skriptkomponente.Inputs[Eingabe &quot;0&quot;]"
+                      hasSideEffects="true"
+                      name="Eingabe &quot;0&quot;">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\Skriptkomponente.Outputs[Ausgabe 0]"
+                      name="Ausgabe 0"
+                      synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Skriptkomponente.Inputs[Eingabe &quot;0&quot;]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\For-Schleifencontainer\Datenflusstask\Sortieren"
                   componentClassID="Microsoft.Sort"
                   contactInfo="Sortieren;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;1"
@@ -1248,6 +1641,115 @@ WHERE ProductSubtypeCode = ?</property>
                       refId="Package\For-Schleifencontainer\Datenflusstask\Spalte kopieren.Outputs[Ausgabe des Kopierens von Spalten]"
                       name="Ausgabe des Kopierens von Spalten"
                       synchronousInputId="Package\For-Schleifencontainer\Datenflusstask\Spalte kopieren.Inputs[Eingabe des Kopierens von Spalten]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\SQL Server-Ziel"
+                  componentClassID="Microsoft.SQLServerDestination"
+                  contactInfo="SQL Server-Ziel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;5"
+                  description="SQL Server-Ziel"
+                  name="SQL Server-Ziel"
+                  version="5">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die zu verwendende Spaltencodepage an, wenn keine Codepageinformationen von der Datenquelle verfügbar sind."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Erzwingt die Verwendung des DefaultCodePage-Eigenschaftswerts beim Beschreiben von Zeichendaten."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Der Name des Datenbankobjekts, in das Daten kopiert werden sollen."
+                      expressionType="Notify"
+                      name="BulkInsertTableName"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Gibt an, dass alle Einschränkungen für das Zielobjekt beim Datenkopiervorgang überprüft werden. Entspricht der Option &quot;CHECK_CONSTRAINTS&quot; für Masseneinfügungsvorgänge."
+                      name="BulkInsertCheckConstraints">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die Zahl der ersten zu kopierenden Zeile an. Entspricht der Option &quot;FIRSTROW&quot; für Masseneinfügungsvorgänge."
+                      expressionType="Notify"
+                      name="BulkInsertFirstRow">-1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Gibt an, dass alle für das Zielobjekt definierten INSERT-Trigger beim Datenkopiervorgang ausgeführt werden. Entspricht der Option &quot;FIRE_TRIGGERS&quot; für Masseneinfügungsvorgänge."
+                      name="BulkInsertFireTriggers">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Zeigt an, ob die für Identitätsspalten übergebenen Werte zum Ziel kopiert werden. Bei &quot;False&quot; werden die Werte für Identitätsspalten am Ziel automatisch generiert. Entspricht der Option &quot;KEEPIDENTITY&quot; für Masseneinfügungsvorgänge."
+                      name="BulkInsertKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Zeigt an, ob für Spalten, die NULL enthalten, NULL zum Ziel kopiert wird. Bei &quot;False&quot; werden für Spalten, die NULL enthalten, am Ziel die Standardwerte eingefügt. Trifft nur zu, wenn die Option &quot;Schnelles Laden&quot; aktiviert ist."
+                      name="BulkInsertKeepNulls">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die Zahl der letzten zu kopierenden Zeile an. Entspricht der Option &quot;LASTROW&quot; für Masseneinfügungsvorgänge."
+                      expressionType="Notify"
+                      name="BulkInsertLastRow">-1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die maximale Anzahl von Syntaxfehlern und Kompilierungsfehlern an, bevor der Datenkopiervorgang abgebrochen wird. Jede Zeile, die nicht kopiert werden kann, wird ignoriert und als ein Fehler gezählt. Entspricht der Option &quot;MAXERRORS&quot; für Masseneinfügungsvorgänge."
+                      name="BulkInsertMaxErrors">-1</property>
+                    <property
+                      dataType="System.String"
+                      description="Gibt an, wie die zu kopierenden Daten sortiert sind. Entspricht der Option &quot;ORDER&quot; für Masseneinfügungsvorgänge."
+                      expressionType="Notify"
+                      name="BulkInsertOrder"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Gibt an, dass für die Dauer des Datenkopiervorgangs eine Sperre auf Tabellenebene eingerichtet wird. Entspricht der Option &quot;TABLOCK&quot; für Masseneinfügungsvorgänge."
+                      name="BulkInsertTablock">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt die Zeit in Sekunden an, die der SQL-Zieladapter vor der Beendigung wartet, wenn keine Daten für das Einfügen zur Verfügung stehen. Ein Timeoutwert von &quot;0&quot; bedeutet, dass kein Timeout für den SQL-Zieladapter besteht."
+                      expressionType="Notify"
+                      name="Timeout">30</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Gibt an, wann beim Einfügen von Daten Commits ausgegeben werden. Der Wert &quot;0&quot; gibt an, dass ein Commit am Ende des Einfügens von Daten ausgegeben wird."
+                      name="MaxInsertCommitSize">0</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\For-Schleifencontainer\Datenflusstask\SQL Server-Ziel.Connections[OleDbConnection]"
+                      description="Die für den Zugriff auf die Datenbank verwendete OLE DB-Laufzeitverbindung."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\SQL Server-Ziel.Inputs[Eingabe des SQL Server-Ziels]"
+                      hasSideEffects="true"
+                      name="Eingabe des SQL Server-Ziels">
+                      <externalMetadataColumns
+                        isUsed="True" />
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\For-Schleifencontainer\Datenflusstask\UNION ALL"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="UNION ALL;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Alle Rechte vorbehalten; http://www.microsoft.com/sql/support;1"
+                  description="Kombiniert Zeilen aus mehreren Datenflüssen, ohne dass diese sortiert werden. Fügen Sie Zeilen nach einer Fehlerkorrektur beispielsweise wieder in einen Datenfluss ein. Wenn Sortierung wichtig ist, wird die Verwendung der Merge-Transformation empfohlen."
+                  name="UNION ALL"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\For-Schleifencontainer\Datenflusstask\UNION ALL.Inputs[UNION ALL Eingabe 1]"
+                      dangling="true"
+                      name="UNION ALL Eingabe 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\For-Schleifencontainer\Datenflusstask\UNION ALL.Outputs[UNION ALL Ausgabe 1]"
+                      name="UNION ALL Ausgabe 1">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -1408,6 +1910,13 @@ WHERE ProductSubtypeCode = ?</property>
                   </outputs>
                 </component>
               </components>
+              <paths>
+                <path
+                  refId="Package\For-Schleifencontainer\Datenflusstask.Paths[Überwachung Ausgabe 1]"
+                  endId="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe.Inputs[Prozentwert-Stichprobe Eingabe 1]"
+                  name="Überwachung Ausgabe 1"
+                  startId="Package\For-Schleifencontainer\Datenflusstask\Überwachung.Outputs[Überwachung Ausgabe 1]" />
+              </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -1729,7 +2238,7 @@ WHERE ProductSubtypeCode = ?</property>
     design-time-name="Package\For-Schleifencontainer\Datenflusstask">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="140,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\ODBC-Quelle"
@@ -1745,7 +2254,7 @@ WHERE ProductSubtypeCode = ?</property>
         <NodeLayout
           Size="132,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\XML-Quelle"
-          TopLeft="143,230" />
+          TopLeft="42,130" />
         <NodeLayout
           Size="157,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\OLE DB-Quelle 1"
@@ -1753,23 +2262,23 @@ WHERE ProductSubtypeCode = ?</property>
         <NodeLayout
           Size="138,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\AGGREGATE"
-          TopLeft="293,355" />
+          TopLeft="219,227" />
         <NodeLayout
           Size="144,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Überwachung"
-          TopLeft="107,557" />
+          TopLeft="45,350" />
         <NodeLayout
           Size="129,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\CDC-Teiler"
-          TopLeft="343,579" />
+          TopLeft="264,417" />
         <NodeLayout
           Size="165,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Zeichenzuordnung"
-          TopLeft="87,817" />
+          TopLeft="23,759" />
         <NodeLayout
           Size="152,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Spalte kopieren"
-          TopLeft="726,632" />
+          TopLeft="513,644" />
         <NodeLayout
           Size="157,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Bedingtes Teilen"
@@ -1777,7 +2286,7 @@ WHERE ProductSubtypeCode = ?</property>
         <NodeLayout
           Size="125,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Flatfileziel"
-          TopLeft="711,271" />
+          TopLeft="452,250" />
         <NodeLayout
           Size="137,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Zeilenanzahl"
@@ -1793,7 +2302,7 @@ WHERE ProductSubtypeCode = ?</property>
         <NodeLayout
           Size="167,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Data Mining Query"
-          TopLeft="774,903" />
+          TopLeft="154,892" />
         <NodeLayout
           Size="164,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Abgeleitete Spalte"
@@ -1801,11 +2310,11 @@ WHERE ProductSubtypeCode = ?</property>
         <NodeLayout
           Size="159,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\DQS-Bereinigung"
-          TopLeft="678,450" />
+          TopLeft="477,441" />
         <NodeLayout
           Size="162,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Fuzzygruppierung"
-          TopLeft="292,697" />
+          TopLeft="244,693" />
         <NodeLayout
           Size="165,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Spalte importieren"
@@ -1813,11 +2322,73 @@ WHERE ProductSubtypeCode = ?</property>
         <NodeLayout
           Size="122,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\Sortieren"
-          TopLeft="44,411" />
+          TopLeft="1368,693" />
         <NodeLayout
           Size="148,42"
           Id="Package\For-Schleifencontainer\Datenflusstask\OLE DB-Befehl"
           TopLeft="980,705" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\Prozentwert-Stichprobe"
+          TopLeft="42,576" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\Pivot"
+          TopLeft="964,365" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\Skriptkomponente"
+          TopLeft="1341,87" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\Langsam veränderliche Dimension"
+          TopLeft="1331,426" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\UNION ALL"
+          TopLeft="994,866" />
+        <EdgeLayout
+          Id="Package\For-Schleifencontainer\Datenflusstask.Paths[Überwachung Ausgabe 1]"
+          TopLeft="117,392">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19.5,184"
+              Start="0,0"
+              End="19.5,176.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,88" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,88"
+                    Point2="0,92"
+                    Point3="4,92" />
+                  <mssgle:LineSegment
+                    End="15.5,92" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,92"
+                    Point2="19.5,92"
+                    Point3="19.5,96" />
+                  <mssgle:LineSegment
+                    End="19.5,176.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="127,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\ODBC-Ziel"
+          TopLeft="664,361" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\For-Schleifencontainer\Datenflusstask\SQL Server-Ziel"
+          TopLeft="505,933" />
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
